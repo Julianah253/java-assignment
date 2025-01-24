@@ -1,35 +1,49 @@
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class MeanMedianStandardDeviation{
+public class MeanMedianStandardDeviation {
     public static void main(String[] args) {
-        int[]numbers = {2, 5, 5, 9, 4, 7, 0, 9=, 6, 11, 12};
-         Arrays.sort(numbers);
-         int SumOfNumbers = 0 + 2 + 4 + 5 + 5 + 6 + 7 + 9 + 9 + 11 + 12;
-         System.out.println(Arrays.toString(numbers));
+        // Given data array
+        int[] data = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 
-         Scanner scanner = new Scanner (System.in);
-         double mean = SumOfNumbers / numbers.length;
-         System.out.println("Mean =" + mean);=
+        // Calculate mean
+        double mean = calculateMean(data);
+        System.out.println("Mean: " + mean);
 
-         if (numbers.length % 2 == 0){
-            int mid1 = numbers[numbers.length/2 -1];
-            int mid2 = numbers[numbers.length/2];
-            int median = (mid1 + mid2)/2;
-            System.out.println("Median = " + median);
-         } else {
-            if (numbers.length % 2 == 1);
-            int median = numbers[numbers.length/2];
-            System.out.print("Median =" + median);
-         }
+        // Calculate median
+        double median = calculateMedian(data);
+        System.out.println("Median: " + median);
 
+        // Calculate standard deviation
+        double standardDeviation = calculateStandardDeviation(data, mean);
+        System.out.println("Standard Deviation: " + standardDeviation);
+    }
 
-         double sumSquaredDifferences = 0;
-         for (int value : numbers){
-            double difference = value.mean;
-            sumSquaredDifferences += difference * difference;
-         }
-        double variance = sumSquaredDifferences/ numbers.length;
-        System.out.println("Standard Deviation = " + Math.sqrt(variance));
+    // Method to calculate mean
+    public static double calculateMean(int[] arr) {
+        double sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return sum / arr.length;
+    }
+
+    // Method to calculate median
+    public static double calculateMedian(int[] arr) {
+        Arrays.sort(arr);
+        int n = arr.length;
+        if (n % 2 == 0) {
+            return (arr[n / 2 - 1] + arr[n / 2]) / 2.0;
+        } else {
+            return arr[n / 2];
+        }
+    }
+
+    // Method to calculate standard deviation
+    public static double calculateStandardDeviation(int[] arr, double mean) {
+        double sumSquaredDifferences = 0;
+        for (int num : arr) {
+            sumSquaredDifferences += Math.pow(num - mean, 2);
+        }
+        return Math.sqrt(sumSquaredDifferences / arr.length);
     }
 }
